@@ -1,0 +1,35 @@
+
+We consider a second-price sealed-bid auction where there are $n$ bidders who bid as follows:
+\begin{itemize}
+    \item Bidders 1 up to $n - 1$ bid either 1 dollar or $r > 1$ dollars equiprobably and
+    independently of the rest.
+    \item Bidder $n$ bids $h$ dollars, where $h > r$.
+\end{itemize}
+The seller's expected revenue $R$ is the expectation of the second highest value. 
+\begin{itemize}
+    \item[(a)] What is the value that $R$ is approaching when $n$ is very large? \hfill{\bf [1 marks]}\smallskip
+
+    For large $n$, $R$ approaches $r$.
+
+    \item[(b)] Justify your answer by taking the limit. \hfill{\bf [9 marks]}\smallskip
+
+    Trivially and by the definition, $R$ must be less than $h$.
+
+    Let $X$ be a binomially distributed random variable representing the number of times $r$ is chosen (instead of $1$) from a set of $n - 1$ independent trials (representing independent bidders $1$ to $n - 1$), each of probability $\frac{1}{2}$.
+    \begin{equation}
+        X \sim B{ \left( n - 1, \frac{1}{2} \right) }
+    \end{equation}
+
+    $P(X = 0)$ is the probability that $r$ is chosen $0$ times across the $n - 1$ independent trials.
+    \begin{equation}
+        \begin{split}
+            & P(X = 0) = \ccomb[n - 1]{0} \cdot \frac{1}{2}^0 \cdot \frac{1}{2}^{(n - 1) - 0}
+            = \frac{1}{2}^{n - 1} = 2^{-(n - 1)} = 2^{1 - n} = 2 \cdot 2^{-n} \\
+            & \implies \lim_{n -> \infty}{P(X = 0)} = \lim_{n -> \infty}{ \left( 2 \cdot 2^{-n} \right) }
+            = 2 \cdot \lim_{n -> \infty}{2^{-n}} = 2 \cdot 0 = 0
+        \end{split}
+    \end{equation}
+    This means that as $n$ increases, the probability of $r$ not being chosen approaches zero.
+    Hence, the larger the value of $n$, the more likely an $r$ will be chosen, and thus the more likely $R = r$.
+
+\end{itemize}

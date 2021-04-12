@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\usepackage{multirow, graphicx, amsfonts, amsmath, amsthm, mathtools, tikz, tikz-qtree}
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.375in}
+\addtolength{\textwidth}{1.55in}
+
+\addtolength{\topmargin}{-.375in}
+\addtolength{\textheight}{1.75in}
+
+\newcommand\cperm[2][^n]{\prescript{#1\mkern-2.5mu}{}P_{#2}}
+\newcommand\ccomb[2][^n]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\bipgraph}[2]{
+    \begin{tikzpicture}[every node/.style={circle,draw}]
+		\foreach \xitem in {1,2,...,#1}
+		{
+			% first set
+			\node at (0,\xitem) (a\xitem) {};
+			% second set
+			\node at (2,\xitem) (b\xitem) {};   
+		}
+
+		% connections
+		\foreach \x [count=\xi] in {#2}
+		{
+			\foreach \tritem in \x
+			\draw(a\xi) -- (b\tritem);
+		}
+    \end{tikzpicture}  
+}
+
+\begin{document}
+
+	\begin{center}
+		\LARGE{AGT Summative Assignment -- Individual Component Report}\\[0.1cm]
+		\Large{wcrr51}\\[0.1cm]
+		2021\\[0.5cm]
+	\end{center}
+
+	\begin{enumerate}
+
+		\item[\textbf{Exercise 1.}]   %%%%%%%  11 MARKS  %%%%%%% 
+		\input{sections/exercise1}
+		\newpage
+
+
+		\item[\textbf{Exercise 2.}]   %%%%%%%  10 MARKS  %%%%%%% 
+		\input{sections/exercise2}
+		\newpage
+
+
+		\item[\textbf{Exercise 3.}]   %%%%%%%  15 MARKS  %%%%%%% 
+		\input{sections/exercise3}
+		\newpage
+
+
+		\item[\textbf{Exercise 4.}]   %%%%%%%  12 MARKS  %%%%%%% 
+		\input{sections/exercise4}
+
+	\end{enumerate}
+
+\end{document}

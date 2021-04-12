@@ -1,0 +1,96 @@
+
+Consider the following instance of the load balancing game where the number of tasks is equal to the number of machines, and in particular we have:
+\begin{itemize}
+    \item $m$ identical machines $M_1, M_2, \dots, M_m$ (all of speed 1),
+    \item $m$ identical tasks $w_1 = w_2 = \dots = w_m = 1$.
+\end{itemize}
+Consider also the mixed strategy profile $A$ where each of the tasks is assigned to all machines equiprobably (i.e. with probability $1/m$).
+\begin{enumerate}
+    \item[(a)] Calculate the ratio $cost(A)/cost(OPT)$ in the special case where $m=2$.  \hfill{\bf [3 marks]}\smallskip
+
+    Trivially, makespans of $1$ and $2$ have $2$ assignments each.
+    Hence, for $m = 2$, there are a total of $2^2 = 4$ possible assignments.
+    These assignments are shown in Table~\ref{tab:ex1a}.
+
+    \begin{table}[ht!]
+        \centering
+        \begin{tabular}{cccc}
+          & $M_1$ & $M_2$ & Makespan \\ \hline
+        1 & 1, 2  & -     & 2        \\
+        2 & -     & 1, 2  & 2        \\
+        3 & 1     & 2     & 1        \\
+        4 & 2     & 1     & 1
+        \end{tabular}
+        \caption{Task-machine assignments for $m = 2$ in Exercise 1}
+        \label{tab:ex1a}
+    \end{table}
+
+    From this, $cost(A)$ can be calculated with
+    \begin{equation}
+        cost(A) = E[cost(B)] = \sum_{i = 1}^{m} P(cost(B) = i) \cdot i
+        \label{eq:ex1-cost-a}
+    \end{equation}
+
+    Since there is capacity for one machine per task, and this would be the optimal assignment for any positive $m$, hence, it holds true that
+    \begin{equation}
+        \forall{m} > 0, cost(OPT) = 1
+        \label{eq:ex1-opt-cost}
+    \end{equation}
+
+    For $m = 2$, using~\eqref{eq:ex1-cost-a}, $cost(A) = E[cost(B)] = \frac{1}{4} (1 \cdot 2 + 2 \cdot 2) = \frac{6}{4} = \frac{3}{2} = 1.5$.
+
+    Combining this with~\eqref{eq:ex1-opt-cost}, the ratio $cost(A)/cost(OPT)$ for $m = 2$ is $\frac{3}{2} / 1 = \frac{3}{2} = 1.5$
+
+    \item[(b)] Calculate the ratio $cost(A)/cost(OPT)$ in the special case where $m=3$.  \hfill{\bf [3 marks]}\smallskip
+
+    For a makespan of $1$, there are $\cperm[3]{3} = 3! = 6$ assignments, for $2$, there are $3 \cdot \cperm[3]{2} = 18$ assignments and for $3$, there are trivially $3$ assignments.
+    Hence, for $m = 3$ there are a total of $3^3 = 27$ possible assignments.
+    These assignments are shown in Table~\ref{tab:ex1b}.
+
+    \begin{table}[ht!]
+        \centering
+        \begin{tabular}{ccccc}
+           & $M_1$   & $M_2$   & $M_3$   & Makespan \\ \hline
+        1  & 1, 2, 3 & -       & -       & 3        \\
+        2  & -       & 1, 2, 3 & -       & 3        \\
+        3  & -       & -       & 1, 2, 3 & 3        \\
+        4  & 1       & 2, 3    & -       & 2        \\
+        5  & 1       & -       & 2, 3    & 2        \\
+        6  & -       & 1       & 2, 3    & 2        \\
+        7  & 2, 3    & 1       & -       & 2        \\
+        8  & 2, 3    & -       & 1       & 2        \\
+        9  & -       & 2, 3    & 1       & 2        \\
+        10 & 2       & 1, 3    & -       & 2        \\
+        11 & 2       & -       & 1, 3    & 2        \\
+        12 & -       & 2       & 1, 3    & 2        \\
+        13 & 1, 3    & 2       & -       & 2        \\
+        14 & 1, 3    & -       & 2       & 2        \\
+        15 & -       & 1, 3    & 2       & 2        \\
+        16 & 3       & 1, 2    & -       & 2        \\
+        17 & 3       & -       & 1, 2    & 2        \\
+        18 & -       & 3       & 1, 2    & 2        \\
+        19 & 1, 2    & 3       & -       & 2        \\
+        20 & 1, 2    & -       & 3       & 2        \\
+        21 & -       & 1, 2    & 3       & 2        \\
+        22 & 1       & 2       & 3       & 1        \\
+        23 & 2       & 1       & 3       & 1        \\
+        24 & 2       & 3       & 1       & 1        \\
+        25 & 3       & 2       & 1       & 1        \\
+        26 & 3       & 1       & 2       & 1        \\
+        27 & 1       & 3       & 2       & 1
+        \end{tabular}
+        \caption{Task-machine assignments for $m = 3$ in Exercise 1}
+        \label{tab:ex1b}
+    \end{table}
+
+    For $m = 3$, using~\eqref{eq:ex1-cost-a}, $cost(A) = E[cost(B)] = \frac{1}{27} (1 \cdot 3 + 2 \cdot 18 + 3 \cdot 3) = \frac{51}{27} = \frac{17}{9} \approx 1.89$.
+    Combining this with~\eqref{eq:ex1-opt-cost}, the ratio $cost(A)/cost(OPT)$ for $m = 3$ is $\frac{17}{9} / 1 = \frac{17}{9} \approx 1.89$
+
+    \item[(c)] Discuss what this ratio is for arbitrary $m$. What does this imply about the Price of Anarchy on identical machines for mixed Nash equilibria?  \hfill{\bf [5 marks]}\smallskip
+
+    There are $m^m$ possible assignments distributed over $m$ makespan values (from $1$ to $m$).
+
+    As~\eqref{eq:ex1-opt-cost} holds true for all $m > 0$, the denominator of the fraction is always one.
+
+\end{enumerate}
+\vspace*{0.8cm}
