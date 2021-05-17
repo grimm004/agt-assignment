@@ -88,9 +88,23 @@ Consider also the mixed strategy profile $A$ where each of the tasks is assigned
 
     \item[(c)] Discuss what this ratio is for arbitrary $m$. What does this imply about the Price of Anarchy on identical machines for mixed Nash equilibria?  \hfill{\bf [5 marks]}\smallskip
 
-    There are $m^m$ possible assignments distributed over $m$ makespan values (from $1$ to $m$).
+    As~\eqref{eq:ex1-opt-cost} holds true for all $m > 0$, the denominator of the $cost(A)/cost(OPT)$ ratio is always one.
+    This means that, for this instance of the load balancing game, $cost(A)$ determines what the fraction will be.
 
-    As~\eqref{eq:ex1-opt-cost} holds true for all $m > 0$, the denominator of the fraction is always one.
+    There are $m^m$ possible task to machine assignments, distributed over $m$ makespan values (from $1$ to $m$).
+    Through equiprobable assignment of tasks to machines, let $p_i$ be the probability of an assignment with makespan $i = 1, 2, \ldots, m$ where $\sum_{i = 1}^{m}{p_i} = 1$, given by 
+    \[
+        p_i = \frac{c_i}{m^m}
+    \]
+    Where $c_i$ is the number of combinations of task to machine assignments with a makespan $i$ (for example, for $m = 3$, and makespans $i = 1, 2, 3$, $c_1 = 6, c_2 = 18, c_3 = 3$, and hence $p_1 = \frac{6}{27} = \frac{2}{9}, p_2 = \frac{2}{3}, p_3 = \frac{1}{9}$).
+
+    This would, for arbitrary $m$, yield
+    \[
+        cost(A) = \sum_{i = 1}^{m} \frac{i \cdot c_i}{m^m}
+    \]
+    Note that $\sum_{i = 1}^{m}{c_i} = \implies \forall i > 1, c_i < m^m$, this means that $cost(A)$ is bound to lie within the makespan distribution (between $1$ and $m$), implying the Price of Anarchy for identical machines is relatively low.
+    Furthermore, this is backed up by a known theorem (Slide 50 of Week 5) which states that $\frac{cost(Q)}{cost(OPT)} = O\left(\frac{\log{m}}{\log{\log{m}}}\right) => \texttt{PoA} = \Theta \left(\frac{\log{m}}{\log{\log{m}}}\right)$ for any Nash equilibrium strategy profile $Q$ on identical machines.
+    Because of this, it also implies that the price of anarchy for mixed Nash equilibria on identical machines is quite small, and hence, provides a lower bound on the price of anarchy across all load balancing games.
 
 \end{enumerate}
 \vspace*{0.8cm}
